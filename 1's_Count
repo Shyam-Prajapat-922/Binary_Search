@@ -1,0 +1,40 @@
+// write a program to find the first and last occurance of target
+import java.util.* ; 
+public class First_Last{
+    public static int lastOcc(int arr[] , int target){
+        int l = 0 ; 
+        int r = arr.length -1 ; 
+        while(l <= r){
+            int mid = l + (r - l) / 2 ; 
+            if(arr[mid] == target){
+                if(mid == arr.length - 1 || arr[mid+1] < target)return mid ; 
+                l = mid + 1;  
+            } else {
+                r = mid -1 ; 
+            }
+        }
+        return -1 ; 
+    }
+    public static void findFirstAndLast(int arr[] ,int target){
+        int l = lastOcc(arr , target); 
+        System.out.println("Number of ones :" + (l+1)) ; 
+    }
+    public static void main(String []args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt() ; 
+        int arr[] = new int[n] ; 
+        for(int i = 0 ;i < n ; i++){
+            arr[i] = sc.nextInt() ; 
+        }
+        int target = 1 ; 
+        Arrays.sort(arr) ; 
+        for(int i= 0  , j = arr.length -1 ; i <j ; i++ , j--){
+            int temp = arr[i] ; 
+            arr[i]= arr[j] ; 
+            arr[j] = temp ; 
+        }
+        for(int temp : arr)System.out.print(temp + " ") ;
+        System.out.println()  ; 
+        findFirstAndLast(arr , target) ; 
+    }
+}
